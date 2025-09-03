@@ -56,10 +56,10 @@ Open index.html in your browser
 
 **Akshada Jadhav**
 
-🌐 GitHub
+🌐 GitHub :https://github.com/Jadhav124Akshada
 
-💼 LinkedIn
+💼 LinkedIn :https://www.linkedin.com/in/akshada-jadhav-4b72062b5/
 
-📧 Email
+📧 Email :jadhavakshada414@gmail.com
 
-📸 Instagram
+📸 Instagram :https://www.instagram.com/akshada_jadhav414/?hl=en
