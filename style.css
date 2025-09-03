@@ -1001,6 +1001,43 @@ details[open] .accordion__chev { transform: rotate(180deg); }
 .edu-img-box .download-btn:hover {
   background: #00796B;
 }
+/* Section Heading */
+
+
+/* Accordion Title Highlight */
+.highlight {
+  color: var(--text);
+}
+
+/* Accordion Content Paragraphs */
+.accordion__content p {
+  font-size: 15px;
+  color: var(--text);
+  margin: 6px 0;
+  line-height: 1.6;
+}
+
+/* Accordion List Items */
+.accordion__content ul.list li {
+  font-size: 14px;
+  color: var(--subtext);
+  margin: 6px 0;
+  line-height: 1.6;
+  position: relative;
+  padding-left: 20px;
+}
+
+/* Custom Bullet with Accent */
+.accordion__content ul.list li::before {
+  content: "•";
+  color: var(--accent);
+  position: absolute;
+  left: 0;
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+/* Certificates Section */
 .exp-certificates {
   margin-top: 15px;
   display: flex;
@@ -1008,9 +1045,10 @@ details[open] .accordion__chev { transform: rotate(180deg); }
   flex-wrap: wrap;
 }
 
+/* Certificate Buttons */
 .exp-download-btn {
   padding: 8px 14px;
-  background: #009688;
+  background: var(--accent);
   color: #fff;
   text-decoration: none;
   border-radius: 6px;
@@ -1021,24 +1059,8 @@ details[open] .accordion__chev { transform: rotate(180deg); }
 }
 
 .exp-download-btn:hover {
-  background: #00796B;
-  transform: translateY(-4px); /* Floating effect */
+  background: var(--accent-2);
+  color: var(--text);
+  transform: translateY(-4px);
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
 }
-/* Accordion Card */
-.accordion__item {
-  background: var(--card);
-  border-radius: 12px;
-  margin-bottom: 18px;
-  box-shadow: var(--shadow);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  overflow: hidden;
-  border: 1px solid var(--border);
-}
-
-/* Floating Effect on Hover */
-.accordion__item:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-hover);
-}
-/* Floating Box Style for Accordion Items */
