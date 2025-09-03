@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Year in footer
 document.getElementById('year').textContent = new Date().getFullYear();
 
+
 // Mobile menu toggle
 const menuToggle = document.getElementById('menuToggle');
 const mobileNav = document.getElementById('mobileNav');
@@ -74,86 +75,20 @@ if (contactForm) {
   });
 }
 
-/* ===========================================================
-   AI "About Me" — Local Client-side Summarizer (≤200 words)
-   - Reads a resume file as text (PDF/DOCX need server parse).
-   - Generates a concise summary using simple heuristics.
-   - You can swap this with a real Genkit endpoint (see below).
-   =========================================================== */
-const readFileAsText = (file) => new Promise((resolve, reject) => {
-  const reader = new FileReader();
-  // NOTE: For PDF/DOCX, this returns gibberish; you need server-side parsing.
-  reader.onload = () => resolve(reader.result || '');
-  reader.onerror = reject;
-  reader.readAsText(file);
-});
+ document.addEventListener("DOMContentLoaded", function () {
+    const btn = document.getElementById("toggleCertificates");
+    const more = document.getElementById("moreCertificates");
 
-function summarizeResumeLocally(text, links) {
-  // Very naive heuristic summarizer
-  const clean = text.replace(/\s+/g, ' ').trim();
-
-  // Try to detect name (first capitalized word cluster)
-  const nameMatch = clean.match(/\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+){0,2})\b/);
-  const name = nameMatch ? nameMatch[0] : 'Akshada Jadhav';
-
-  // Extract likely skills keywords
-  const SKILLS = ['React','Next.js','TypeScript','JavaScript','Tailwind','Node.js','Express','MongoDB','MySQL','Python','C','Git','Docker','Prisma','AWS','Figma'];
-  const found = [...new Set(SKILLS.filter(s => new RegExp(`\\b${s}\\b`, 'i').test(clean)))];
-  const topSkills = found.slice(0, 8);
-
-  // Experience count
-  const roles = (clean.match(/(developer|engineer|intern|designer)/gi) || []).length;
-
-  // Compose summary (<= 200 words)
-  const sentences = [];
-  sentences.push(`${name} is a developer focused on building clean, performant web experiences with modern tooling.`);
-  if (topSkills.length) sentences.push(`Core skills include ${topSkills.join(', ')}.`);
-  if (roles > 0) sentences.push(`Experienced across roles such as developer and intern, delivering UI components, API integrations, and performance improvements.`);
-  if (links.github || links.linkedin) {
-    const bits = [];
-    if (links.github) bits.push(`GitHub: ${links.github}`);
-    if (links.linkedin) bits.push(`LinkedIn: ${links.linkedin}`);
-    sentences.push(`Explore more work at ${bits.join(' • ')}.`);
-  }
-  sentences.push(`Open to impactful opportunities and collaborations.`);
-
-  let summary = sentences.join(' ');
-  // crude word limiter
-  const words = summary.split(/\s+/);
-  if (words.length > 200) summary = words.slice(0, 200).join(' ') + '…';
-  return summary;
-}
-
-const resumeInput = document.getElementById('resumeInput');
-const generateBtn = document.getElementById('generateBtn');
-const aboutSummary = document.getElementById('aboutSummary');
-const githubUrl = document.getElementById('githubUrl');
-const linkedinUrl = document.getElementById('linkedinUrl');
-
-if (generateBtn) {
-  generateBtn.addEventListener('click', async () => {
-    if (!resumeInput.files || resumeInput.files.length === 0) {
-      aboutSummary.textContent = 'Please upload a resume file (.txt recommended for this local demo) to generate a summary.';
-      return;
-    }
-    const file = resumeInput.files[0];
-
-    try {
-      // LOCAL DEMO: read as text (good for .txt). PDF/DOCX require server parsing.
-      const text = await readFileAsText(file);
-
-      const summary = summarizeResumeLocally(text, {
-        github: githubUrl.value.trim(),
-        linkedin: linkedinUrl.value.trim()
-      });
-
-      aboutSummary.textContent = summary;
-    } catch (err) {
-      aboutSummary.textContent = 'Sorry, could not read the file. Try a .txt resume for this local demo.';
-      console.error(err);
-    }
+    btn.addEventListener("click", function () {
+      if (more.style.display === "none" || more.style.display === "") {
+        more.style.display = "block";
+        btn.textContent = "Show Less";
+      } else {
+        more.style.display = "none";
+        btn.textContent = "Show More";
+      }
+    });
   });
-}
 // Questions & answers
 const qaList = {
   // About
@@ -242,3 +177,7 @@ chatbotInput.addEventListener("keypress", (e) => {
 document.querySelectorAll(".suggestion-btn").forEach((btn) => {
   btn.addEventListener("click", () => sendMessage(btn.textContent));
 });
+function toggleResult(card) {
+    const result = card.querySelector('.result');
+    result.classList.toggle('hidden');
+  }
